@@ -2,6 +2,7 @@ package Pages;
 
 import java.io.IOException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -41,6 +42,15 @@ public class SignUpPage extends TestBase{
 	//Action methods
 	
 	
+	public boolean check_SignUpButton_Visibility()
+	{
+		
+		boolean status=signUPButton.isDisplayed();
+		
+		return status;	
+		
+	}
+	
 	public void signUp(String firstName, String lastName,String MobNo,String Email,String pass,String confirmpass) throws InterruptedException
 	{
 		
@@ -57,13 +67,28 @@ public class SignUpPage extends TestBase{
 			
 	}
 	
-	public boolean validateTitle()
+	public boolean validate_SignUp_Status()
 	{
 		
+		boolean usernameStatus=driver.findElement(By.xpath("//h3[contains(text(),"+firstname+")]")).isDisplayed();
 		
-		return false;
+		return usernameStatus;
 		
 	}
+	
+	
+	public String validateTitle()
+	{
+		
+		String title=driver.getTitle();
+		
+		return title;
+		
+	}
+	
+	
+	
+	
 	
 	
 	
