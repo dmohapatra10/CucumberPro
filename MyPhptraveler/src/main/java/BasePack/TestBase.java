@@ -7,14 +7,20 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+
+import Utility.WebEventListener;
 
 public class TestBase {
 	
-	WebDriver driver;
-	FileInputStream fis;
-	Properties prop;
+	public static WebDriver driver;
+	public static FileInputStream fis;
+	public static Properties prop;
 	
-	TestBase() throws IOException
+	public static EventFiringWebDriver edriver;
+	public static WebEventListener myListener;
+	
+	public TestBase() throws IOException
 	{
 		
 		prop=new Properties();
@@ -23,10 +29,10 @@ public class TestBase {
 	}
 	
 	
-	public void init(String browserName) {
+	public void init() throws IOException {
 		
 		
-		browserName=prop.getProperty("browser");
+		String browserName=prop.getProperty("browser");
 		
 		if(browserName.equalsIgnoreCase("firefox"))
 		{
@@ -38,6 +44,12 @@ public class TestBase {
 			System.setProperty("webdriver.chrome.driver", "C:\\Users\\dmoha\\eclipse-workspace\\MyPhptraveler\\Drivers\\chromedriver_win32 (2)\\chromedriver.exe");
 
 		}
+		
+		edriver=new EventFiringWebDriver(driver);
+		myListener=new WebEventListener();
+		
+		edriver.register(myListener);
+		driver=edriver;
 		
 	}
 
