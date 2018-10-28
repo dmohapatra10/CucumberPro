@@ -47,7 +47,7 @@ public class AccountPage extends TestBase{
 		
 	}
 	
-	public boolean check_signIn_ButtonNot_Showing_AfterSignUo()
+	public boolean check_signIn_ButtonNot_Showing_AfterSignp()
 	{
 		boolean status=true;
 		
